@@ -25,6 +25,28 @@ class Student{
 
 }
 
+class Course{
+    constructor({
+        name,
+        teacher,
+        classes = []
+    }){
+        this.name = name;
+        this.teacher = teacher;
+        this.classes = classes;
+    }
+}
+
+class Lesson{
+    constructor({
+        numlesson,
+        title
+    }){
+        this.numlesson = numlesson;
+        this.title = title;
+    }
+}
+
 class LearningPath{
     constructor({
         name,
@@ -33,15 +55,58 @@ class LearningPath{
     {
         this.name = name;
         this.courses = courses;
-        
     }
 }
+
+//Cracion de las Class
+
+const cursoProgBasica = new Course({
+    name: "Curso Programacion Basica",
+    teacher: "Fredy Vegas"
+}) 
+const cursoDefHTMLYCSS= new Course({
+    name: "Curso Definitivo de HTML y CSS",
+    teacher: "Fredy Vegas",
+}) 
+const cursoPracHTMLYCSS = new Course({
+    name: "Curso Practico de HTML y CSS",
+    teacher: "Fredy Vegas",
+}) 
+const cursoDataBuss = new Course({
+    name: "Curso DataBussines",
+    teacher: "Fredy Vegas",
+}) 
+const cursoDataViz = new Course({
+    name: "Curso DataVIZ",
+    teacher: "Fredy Vegas",
+}) 
+const cursoTableu = new Course({
+    name: "Curso tableu",
+    teacher: "Fredy Vegas",
+}) 
+const cursoUnreal = new Course({
+    name: "Curso de Unreal engine",
+    teacher: "Fredy Vegas",
+}) 
+const cursoIntrovdj= new Course({
+    name: "Curso Introduccion a la Produccion de VideoJuegos",
+    teacher: "Fredy Vegas",
+}) 
+const cursoUnity3D = new Course({
+    name: "Curso de Unity 3D",
+    teacher: "Fredy Vegas",
+}) 
+
+
+
+//Creacion de los Learining Paths
 
 const escuelaWeb = new LearningPath({
     name: "Escuela de Desarrrollo Web",
     courses:[
-        "Curso Definitivo de HTML y CSS",
-        "Curso Practico de HTML y CSS",
+        cursoProgBasica,
+        cursoDefHTMLYCSS,
+        cursoPracHTMLYCSS,
         "Curso de Responsive Desing"
     ]
 });
@@ -49,19 +114,21 @@ const escuelaWeb = new LearningPath({
 const escuelaData = new LearningPath({
     name: "Escuela de Data Science",
     courses:[
-        "Curso DataBussines",
-        "Curso DataVIZ",
-        "Curso Tabnleu"
+        cursoProgBasica,
+        cursoDataBuss,
+        cursoDataViz,
+        cursoTableu
     ]
 });
 
 const escuelaVgs = new LearningPath({
     name: "Escuela de VideoJuegos",
-            courses:[
-                "Curso Introduccion a la Produccion de VideoJuegos",
-                "Curso de Unreal engine",
-                "Curso de Unity 3D"
-            ]
+        courses:[
+            cursoProgBasica,
+            cursoIntrovdj,
+            cursoUnreal,
+            cursoUnity3D
+        ]
 });
 
 const juan = new Student({
