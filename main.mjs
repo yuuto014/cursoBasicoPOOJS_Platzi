@@ -25,15 +25,52 @@ class Student{
 
 }
 
+function videoPlay(id){
+    const urlSecreta = "https://platziultrasecretomasquelanasa.com" + id;
+    console.log("Se esta reproduciendo desde la url " + urlSecreta);
+}
+
+function videoStop(id){
+    const urlSecreta = "https://platziultrasecretomasquelanasa.com" + id;
+    console.log("Pausamos la url " + urlSecreta);
+}
+
+export class PlatziClass{
+    constructor({
+        name,
+        videoID
+    }){
+        this.name = name;
+        this.videoID = videoID;
+    }
+    reproducir(){
+        videoPlay(this.videoID);
+    }
+    pausar(){
+        videoStop(this.videoStop);
+    }
+}
+
 class Course{
     constructor({
         name,
         teacher,
         classes = []
     }){
-        this.name = name;
+        this._name = name;
         this.teacher = teacher;
         this.classes = classes;
+    }
+    get name(){
+        return this._name;
+    }
+    set name(nuevoNombre){
+        if (nuevoNombre == "Curso malito"){
+            console.error("Wey... Noooooo");
+        }
+        else{
+            this._name = nuevoNombre
+        }
     }
 }
 
