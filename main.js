@@ -1,3 +1,26 @@
+class Comment {
+    constructor({
+        content,
+        studentName,
+        studentRole = "Estudiante",
+    }){
+        this.content = content;
+        this.studentName = studentName;
+        this.studentRole = studentRole;
+        this.likes = 1;
+    }
+    publicar(){
+        console.log(this.studentName 
+            + " ( "
+            + this.studentRole 
+            + " ) \n"
+            + this.likes
+            + " likes \n"
+            + this.content
+            )
+    }
+}
+
 class Student{
 
     constructor({
@@ -21,6 +44,13 @@ class Student{
         };
         this.approvedCourses = approvedCourses;
         this.learingPaths = learingPaths;
+    }
+    publicarComentario(commentContent){
+        const comment = new Comment({
+            content: commentContent,
+            studentName: this.name,
+        });
+        comment.publicar();
     }
 
 }
@@ -58,6 +88,24 @@ class ExpertStudent extends Student{
     approveCourse(curso){
         this.approvedCourses.push(curso);
         
+    }
+}
+class TeacherStudent extends Student{
+    constructor(props){
+        super(props);
+    }
+    approveCourse(curso){
+        this.approvedCourses.push(curso);
+        
+    }
+
+    publicarComentario(commentContent){
+        const comment = new Comment({
+            content: commentContent,
+            studentName: this.name,
+            studentRole: "teacher"
+        });
+        comment.publicar();
     }
 }
 
@@ -235,4 +283,11 @@ const miguelito = new BasicStudent({
         escuelaWeb,
         escuelaData
     ]
+})
+
+const fredy = new TeacherStudent({
+    name: "Freddy vega",
+    username: "Fredier",
+    email: "fredier@platzi.com ",
+    instagram : "freddiervegas",
 })
