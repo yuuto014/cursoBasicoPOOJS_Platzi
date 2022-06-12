@@ -25,6 +25,42 @@ class Student{
 
 }
 
+class FreeStudent extends Student{
+    constructor(props){
+        super(props);
+    }
+    approveCourse(curso){
+        if(curso.isFree){
+            this.approvedCourses.push(curso);
+        }
+        else{
+            console.warn("Lo sentimos, "+this.name+", solo puedes tomar cursos gratis");
+        }
+    }
+}
+class BasicStudent extends Student{
+    constructor(props){
+        super(props);
+    }
+    approveCourse(curso){
+        if(curso.lang !== "english"){
+            this.approvedCourses.push(curso);
+        }
+        else{
+            console.warn("Lo sentimos, "+this.name+", no puedes tomar cursos en ingles");
+        }
+    }
+}
+class ExpertStudent extends Student{
+    constructor(props){
+        super(props);
+    }
+    approveCourse(curso){
+        this.approvedCourses.push(curso);
+        
+    }
+}
+
 function videoPlay(id){
     const urlSecreta = "https://platziultrasecretomasquelanasa.com" + id;
     console.log("Se esta reproduciendo desde la url " + urlSecreta);
@@ -35,7 +71,7 @@ function videoStop(id){
     console.log("Pausamos la url " + urlSecreta);
 }
 
-export class PlatziClass{
+class PlatziClass{
     constructor({
         name,
         videoID
@@ -54,12 +90,14 @@ export class PlatziClass{
 class Course{
     constructor({
         name,
-        teacher,
-        classes = []
+        classes = [],
+        isFree = false,
+        lang = "spanish"
     }){
         this._name = name;
-        this.teacher = teacher;
         this.classes = classes;
+        this.isFree = isFree;
+        this.lang = lang;
     }
     get name(){
         return this._name;
@@ -99,39 +137,48 @@ class LearningPath{
 
 const cursoProgBasica = new Course({
     name: "Curso Programacion Basica",
-    teacher: "Fredy Vegas"
+    isFree: true,
+    lang: "spanish"
 }) 
 const cursoDefHTMLYCSS= new Course({
     name: "Curso Definitivo de HTML y CSS",
-    teacher: "Fredy Vegas",
+    isFree: false,
+    lang: "spanish"
 }) 
 const cursoPracHTMLYCSS = new Course({
     name: "Curso Practico de HTML y CSS",
-    teacher: "Fredy Vegas",
+    isFree: false,
+    lang: "english"
 }) 
 const cursoDataBuss = new Course({
     name: "Curso DataBussines",
-    teacher: "Fredy Vegas",
+    isFree: false,
+    lang: "spanish"
 }) 
 const cursoDataViz = new Course({
     name: "Curso DataVIZ",
-    teacher: "Fredy Vegas",
+    isFree: false,
+    lang: "spanish"
 }) 
 const cursoTableu = new Course({
     name: "Curso tableu",
-    teacher: "Fredy Vegas",
+    isFree: false,
+    lang: "spanish"
 }) 
 const cursoUnreal = new Course({
     name: "Curso de Unreal engine",
-    teacher: "Fredy Vegas",
+    isFree: false,
+    lang: "spanish"
 }) 
 const cursoIntrovdj= new Course({
     name: "Curso Introduccion a la Produccion de VideoJuegos",
-    teacher: "Fredy Vegas",
+    isFree: false,
+    lang: "spanish"
 }) 
 const cursoUnity3D = new Course({
     name: "Curso de Unity 3D",
-    teacher: "Fredy Vegas",
+    isFree: false,
+    lang: "spanish"
 }) 
 
 
@@ -168,7 +215,7 @@ const escuelaVgs = new LearningPath({
         ]
 });
 
-const juan = new Student({
+const juan = new FreeStudent({
     name: "juan Camilo",
     username: "juanc",
     email: "juanc@platzi.com",
@@ -179,7 +226,7 @@ const juan = new Student({
     ]
 })
 
-const miguelito = new Student({
+const miguelito = new BasicStudent({
     name: "miguel angelo",
     username: "miguelito_feliz",
     email: "miguelito23@platzi.com",
